@@ -1,4 +1,4 @@
-resource "aws_instance" "t2.micro" {
+resource "aws_instance" "my_instance_01" {
   ami               = "ami-i-0680c5a4fbd7612c1"
   instance_type     = "t2.micro"
   availability_zone = "us-eat-1a"
