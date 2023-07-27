@@ -1,8 +1,8 @@
-resource "aws_instance" "r100c96" {
-  ami               = "ami-0a9d27a9f4f5c0efc"
+resource "aws_instance" "t2.micro" {
+  ami               = "ami-i-0680c5a4fbd7612c1"
   instance_type     = "t2.micro"
-  availability_zone = "ap-south-1b"
-  key_name          = "naveen-intance"
+  availability_zone = "us-eat-1a"
+  key_name          = "my instance 01"
   tags = {
     Name = "Terraform-diff-linux"
   }
@@ -10,7 +10,7 @@ resource "aws_instance" "r100c96" {
   provisioner "remote-exec" {
     inline = [ "sudo hostnamectl set-hostname cloudEc2.technix.com" ]
     connection {
-      host        = aws_instance.r100c96.public_dns
+      host        = aws_instance.t2.micro.public_dns
       type        = "ssh"
       user        = "ec2-user"
       private_key = file("./admin.pem")
@@ -18,7 +18,7 @@ resource "aws_instance" "r100c96" {
   }
 
   provisioner "local-exec" {
-    command = "echo ${aws_instance.r100c96.public_dns} > inventory"
+    command = "echo ${ec2-54-227-117-57.compute-1.amazonaws.com} > inventory"
   }
 
   provisioner "local-exec" {
@@ -27,9 +27,9 @@ resource "aws_instance" "r100c96" {
 }
 
 output "ip" {
-  value = aws_instance.r100c96.public_ip
+  value = aws_instance.t2.micro.public_ip
 }
 
 output "publicName" {
-  value = aws_instance.r100c96.public_dns
+  value = aws_instance.t2.micro.public_dns
 }
